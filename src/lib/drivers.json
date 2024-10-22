@@ -1,0 +1,44 @@
+{
+  "drivers": [
+    {
+      "name": "Max Verstappen",
+      "team": "Red Bull Racing",
+      "number": 1,
+      "portrait": "/portraits/max-verstappen.png",
+      "photos": [],
+      "tailwindColor": "slate-900",
+      "bio": "Max Verstappen, F1’s youngest champion, known for aggressive racing and record-breaking dominance.",
+      "country": "Netherlands",
+      "placeOfBirth": "Hasselt, Belgium",
+      "dateOfBirth": "30/09/1997",
+      "age": 27,
+      "height": 1.81,
+      "weight": 27,
+      "wins": 61,
+      "polePositions": 40,
+      "fastestLaps": 32,
+      "podiums": 110,
+      "gpEntered": 204,
+      "retirements": 32,
+      "pointsScored": 2940.5,
+      "worldChampionship": 3,
+      "badges": [
+        {
+          "label": "champion",
+          "color": "yellow"
+        },
+        {
+          "label": "gp winner",
+          "color": "emerald"
+        }
+      ],
+      "currentSeason": {
+        "wins": 0,
+        "polePositions": 0,
+        "fastestLaps": 0,
+        "podiums": 0,
+        "pointScored": 0
+      }
+    }
+  ]
+}
