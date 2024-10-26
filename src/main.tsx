@@ -4,13 +4,16 @@ import App from "./App.tsx";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { DriverContextProvider } from "./context/driverContext.tsx";
+import { ListContextProvider } from "./context/listContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
-      <DriverContextProvider>
-        <App />
-      </DriverContextProvider>
+      <ListContextProvider>
+        <DriverContextProvider>
+          <App />
+        </DriverContextProvider>
+      </ListContextProvider>
     </BrowserRouter>
   </StrictMode>
 );

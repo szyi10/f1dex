@@ -1,3 +1,6 @@
+import { twMerge } from "tailwind-merge";
+import { badgesBgColors, badgesTextColors } from "../../../lib/constants";
+
 interface Badge {
   label: string;
   color: string;
@@ -6,7 +9,10 @@ interface Badge {
 const Badge = ({ label, color }: Badge) => {
   return (
     <span
-      className={`bg-${color}-200 text-${color}-800 text-xs p-2 rounded-md font-bold uppercase`}
+      className={twMerge(
+        `${badgesBgColors} ${badgesTextColors} text-xs p-2 rounded-md font-bold uppercase`,
+        ` bg-${color}-200 text-${color}-800`
+      )}
     >
       {label}
     </span>

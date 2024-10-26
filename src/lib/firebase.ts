@@ -16,6 +16,32 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const dbRef = ref(db);
 
+// Search driver by name or team with partial match
+export const searchDriver = async (searchString: string): Promise<Driver[]> => {
+  try {
+    const snapshot = await get(child(dbRef, "drivers"));
+
+    if (!snapshot.exists()) {
+      console.log("No data available");
+      return [];
+    }
+
+    const drivers = snapshot.val() as Record<string, Driver>;
+
+    const results = Object.values(drivers).filter(
+      (driver) =>
+        driver.name.toLowerCase().includes(searchString.toLowerCase()) ||
+        driver.team.toLowerCase().includes(searchString.toLowerCase())
+    );
+
+    return results.length ? results : [];
+  } catch (error) {
+    console.error("Error searching drivers:", error);
+    return [];
+  }
+};
+
+// Get all drivers
 export const getDrivers = async () => {
   try {
     const snapshot = await get(child(dbRef, "drivers"));
@@ -30,6 +56,7 @@ export const getDrivers = async () => {
   }
 };
 
+// Get driver just by their name
 export const getDriver = async (name: string): Promise<Driver | null> => {
   try {
     const driversRef = ref(db, "drivers");

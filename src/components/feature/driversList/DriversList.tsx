@@ -1,27 +1,17 @@
-import { useEffect, useState } from "react";
+import { useList } from "../../../hooks";
 import { Driver } from "../../../types/driver";
-import { getDrivers } from "../../../lib/firebase";
 import DriverCard from "./DriverCard";
 
 const DriversList = () => {
-  const [drivers, setDrivers] = useState<Driver[] | undefined>(undefined);
+  const { list } = useList();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getDrivers();
-      setDrivers(data);
-    };
-
-    fetchData();
-  }, []);
-
-  if (!drivers) {
+  if (!list) {
     return <p>No drivers found...</p>;
   }
 
   return (
     <div className="w-full mt-6 grid grid-cols-3 gap-4">
-      {drivers.map((driver: Driver) => (
+      {list.map((driver: Driver) => (
         <DriverCard key={driver.name} data={driver} />
       ))}
     </div>

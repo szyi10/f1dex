@@ -32,8 +32,9 @@ export interface Driver {
   podiums: number;
   gpEntered: number;
   retirements: number;
-  pointScored: number;
+  pointsScored: number;
   worldChampionship: number;
   badges: Badge[];
   currentSeason: CurrentSeason;
+  slug: string;
 }

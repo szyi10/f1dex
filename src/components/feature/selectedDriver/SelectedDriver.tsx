@@ -4,23 +4,23 @@ import SelectedBio from "./SelectedBio";
 import SelectedDetails from "./SelectedDetails";
 import SelectedStats from "./SelectedStats";
 import { twMerge } from "tailwind-merge";
-import useDriver from "../../../hooks/useDriver";
+import { driverNamesColors } from "../../../lib/constants";
+import { Link } from "react-router-dom";
+import { useDriver } from "../../../hooks";
 
 const SelectedDriver = () => {
   const { driver } = useDriver();
-  const [fade, setFade] = useState(false); // State for fade effect
-  const [currentDriver, setCurrentDriver] = useState(driver); // State for current driver
+  const [fade, setFade] = useState(false);
+  const [currentDriver, setCurrentDriver] = useState(driver);
 
   useEffect(() => {
-    // Trigger fade out
     setFade(true);
-
     const timer = setTimeout(() => {
-      setCurrentDriver(driver); // Update current driver
-      setFade(false); // Trigger fade in
-    }, 100); // Duration of fade-out
+      setCurrentDriver(driver);
+      setFade(false);
+    }, 100);
 
-    return () => clearTimeout(timer); // Clean up timeout on unmount or driver change
+    return () => clearTimeout(timer);
   }, [driver]);
 
   if (!currentDriver) {
@@ -67,7 +67,7 @@ const SelectedDriver = () => {
     {
       label: "points",
       icon: "PTS",
-      stat: currentDriver.pointScored,
+      stat: currentDriver.pointsScored,
       color: "neutral",
     },
   ];
@@ -91,7 +91,7 @@ const SelectedDriver = () => {
           </small>
           <h2
             className={twMerge(
-              "text-xl font-bold text-teal-400",
+              `text-xl font-bold ${driverNamesColors}`,
               `text-${currentDriver.tailwindColor}`
             )}
           >
@@ -108,9 +108,11 @@ const SelectedDriver = () => {
           weight={currentDriver.weight}
         />
         <SelectedStats stats={statsData} />
-        <button className="mt-5 w-full bg-primary text-neutral-100 rounded-xl py-2 hover:scale-[1.02] shadow shadow-transparent transition-all hover:shadow-primary">
-          Check More
-        </button>
+        <Link to={`/driver/${currentDriver.slug}`}>
+          <button className="mt-5 w-full bg-primary text-neutral-100 rounded-xl py-2 hover:scale-[1.02] shadow shadow-transparent transition-all hover:shadow-primary">
+            Check More
+          </button>
+        </Link>
       </div>
     </div>
   );

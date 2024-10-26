@@ -1,6 +1,6 @@
 import SelectedBadges from "../selectedDriver/SelectedBadges";
 import { Driver } from "../../../types/driver";
-import useDriver from "../../../hooks/useDriver";
+import { useDriver } from "../../../hooks";
 
 const DriverCard = ({ data }: { data: Driver }) => {
   const { setQuery } = useDriver();
@@ -10,7 +10,6 @@ const DriverCard = ({ data }: { data: Driver }) => {
   };
 
   return (
-    // TODO: Change to `data.name` to `data.id`
     <div
       id={data.name}
       className="cursor-pointer transition-all hover:scale-[1.02]"
