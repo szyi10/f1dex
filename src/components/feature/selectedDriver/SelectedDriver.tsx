@@ -8,7 +8,12 @@ import { driverNamesColors } from "../../../lib/constants";
 import { Link } from "react-router-dom";
 import { useDriver } from "../../../hooks";
 
-const SelectedDriver = () => {
+interface Props {
+  withBio?: boolean;
+  withButton?: boolean;
+}
+
+const SelectedDriver = ({ withBio = true, withButton = true }: Props) => {
   const { driver } = useDriver();
   const [fade, setFade] = useState(false);
   const [currentDriver, setCurrentDriver] = useState(driver);
@@ -100,7 +105,7 @@ const SelectedDriver = () => {
           <p className="text-sm text-neutral-400">{currentDriver.team}</p>
         </div>
         <SelectedBadges badges={currentDriver.badges} />
-        <SelectedBio text={currentDriver.bio} />
+        {withBio && <SelectedBio text={currentDriver.bio} />}
         <SelectedDetails
           age={currentDriver.age}
           country={currentDriver.country}
@@ -108,11 +113,13 @@ const SelectedDriver = () => {
           weight={currentDriver.weight}
         />
         <SelectedStats stats={statsData} />
-        <Link to={`/driver/${currentDriver.slug}`}>
-          <button className="mt-5 w-full bg-primary text-neutral-100 rounded-xl py-2 hover:scale-[1.02] shadow shadow-transparent transition-all hover:shadow-primary">
-            Check More
-          </button>
-        </Link>
+        {withButton && (
+          <Link to={`/driver/${currentDriver.slug}`}>
+            <button className="mt-5 w-full bg-primary text-neutral-100 rounded-xl py-2 hover:scale-[1.02] shadow shadow-transparent transition-all hover:shadow-primary">
+              Check More
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );
