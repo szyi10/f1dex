@@ -23,7 +23,7 @@ const NavbarLink = ({ data }: { data: Props }) => {
     >
       <p
         className={twMerge(
-          "font-medium transition-colors group-hover/navlink:text-primary",
+          "font-medium transition-colors group-hover/navlink:text-blue-500",
           data.disabled &&
             "text-neutral-400 group-hover/navlink:text-neutral-300"
         )}
@@ -32,7 +32,7 @@ const NavbarLink = ({ data }: { data: Props }) => {
       </p>
       <div
         className={twMerge(
-          "absolute bottom-0 left-0 right-0 h-1 rounded-xl bg-primary transition-opacity opacity-0 group-hover/navlink:opacity-100",
+          "absolute bottom-0 left-0 right-0 h-1 rounded-xl bg-blue-500 transition-opacity opacity-0 group-hover/navlink:opacity-100",
           data.disabled && "bg-neutral-300"
         )}
       ></div>

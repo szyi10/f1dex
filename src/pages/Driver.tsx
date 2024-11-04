@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { DriverInfo, SelectedDriver } from "../components/feature";
 import { useDriver } from "../hooks";
+import { NoResults } from "../components/shared";
 
 const Driver = () => {
   const { slug } = useParams();
@@ -29,7 +30,7 @@ const Driver = () => {
   }, [setQuery, slug]);
 
   if (!driver) {
-    return <p>Driver not found. Try again later!</p>;
+    return <NoResults />;
   }
 
   return (

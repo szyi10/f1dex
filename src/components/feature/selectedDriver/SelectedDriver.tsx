@@ -7,6 +7,7 @@ import { twMerge } from "tailwind-merge";
 import { driverNamesColors } from "../../../lib/constants";
 import { Link } from "react-router-dom";
 import { useDriver } from "../../../hooks";
+import { Spinner } from "../../shared";
 
 interface Props {
   withBio?: boolean;
@@ -29,7 +30,11 @@ const SelectedDriver = ({ withBio = true, withButton = true }: Props) => {
   }, [driver]);
 
   if (!currentDriver) {
-    return <p>No drivers found...</p>;
+    return (
+      <div className="w-full flex mt-10 justify-center">
+        <Spinner />
+      </div>
+    );
   }
 
   const statsData = [
@@ -115,7 +120,7 @@ const SelectedDriver = ({ withBio = true, withButton = true }: Props) => {
         <SelectedStats stats={statsData} />
         {withButton && (
           <Link to={`/driver/${currentDriver.slug}`}>
-            <button className="mt-5 w-full bg-primary text-neutral-100 rounded-xl py-2 hover:scale-[1.02] shadow shadow-transparent transition-all hover:shadow-primary">
+            <button className="mt-5 w-full bg-blue-500 text-neutral-100 rounded-xl py-2 hover:scale-[1.02] shadow shadow-transparent transition-all hover:shadow-blue-500">
               Check More
             </button>
           </Link>
