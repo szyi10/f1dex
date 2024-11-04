@@ -32,7 +32,7 @@ export const navLinks = [
 ];
 
 export const driverNamesColors =
-  "text-teal-400 text-red-500 text-slate-900 text-orange-500";
+  "text-teal-400 text-red-500 text-slate-900 text-orange-500 text-blue-300 text-blue-600 text-emerald-500 text-green-500 text-sky-500 text-zinc-500";
 
 export const badgesBgColors =
   "bg-violet-200 bg-emerald-200 bg-yellow-200 bg-blue-200";

@@ -7,7 +7,7 @@ const Home = () => {
         <Searchbar />
         <DriversLists />
       </div>
-      <div className="w-1/4 ml-5">
+      <div className="w-1/4 ml-5 sticky -top-1/3">
         <SelectedDriver />
       </div>
     </main>
