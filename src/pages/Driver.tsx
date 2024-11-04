@@ -32,8 +32,6 @@ const Driver = () => {
     return <p>Driver not found. Try again later!</p>;
   }
 
-  // LEFT SIDE - biography & news
-  // RIGHT SIDE - everything else
   return (
     <main className="max-w-screen-xl w-full mx-auto mt-8 px-3 flex items-start">
       <div className="w-3/4">
@@ -41,9 +39,9 @@ const Driver = () => {
       </div>
       <div className="w-1/4 ml-5">
         <SelectedDriver withBio={false} withButton={false} />
-        <div className="bg-neutral-50 rounded-xl p-5 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] mt-3">
+        {/* <div className="bg-neutral-50 rounded-xl p-5 shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] mt-3">
           place of birth, some additional stats
-        </div>
+        </div> */}
       </div>
     </main>
   );

@@ -20,6 +20,7 @@ export interface Driver {
   photos: string[];
   tailwindColor: string;
   bio: string;
+  fullBiography: string[];
   country: string;
   placeOfBirth: string;
   dateOfBirth: string;
