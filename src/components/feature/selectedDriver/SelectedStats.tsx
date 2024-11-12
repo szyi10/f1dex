@@ -13,7 +13,7 @@ const Stat = ({ icon, stat, color }: Stat) => {
     <div className="bg-slate-200 p-1 rounded-full w-full h-28">
       <div
         className={twMerge(
-          `rounded-full text-neutral-50 text-xs font-semibold h-[26px] w-[26px] flex items-center justify-center ${statsBgColors}`,
+          `rounded-full text-neutral-50 text-xs font-semibold h-[34px] w-[34px] lg:h-[26px] lg:w-[26px] flex items-center justify-center ${statsBgColors}`,
           `bg-${color}-500`
         )}
       >

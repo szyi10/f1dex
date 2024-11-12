@@ -8,7 +8,7 @@ const Footer = () => {
           <a className="underline" href="https://github.com/szyi10">
             szyi10
           </a>{" "}
-          - v.1.0
+          - v.1.1
         </p>
       </div>
     </footer>

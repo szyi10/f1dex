@@ -85,7 +85,7 @@ const SelectedDriver = ({ withBio = true, withButton = true }: Props) => {
   return (
     <div
       className={twMerge(
-        "text-slate-800 transition-opacity duration-300",
+        "hidden lg:block text-slate-800 transition-opacity duration-300",
         fade ? "opacity-0" : "opacity-100"
       )}
     >

@@ -6,12 +6,16 @@ interface ContextProps {
   query: string;
   driver: Driver | null;
   setQuery: (query: string) => void;
+  isPopupOpened: boolean;
+  togglePopup: () => void;
 }
 
 const DriverContext = createContext<ContextProps>({
   query: "Max Verstappen",
   driver: null,
   setQuery: () => {},
+  isPopupOpened: false,
+  togglePopup: () => {},
 });
 
 export const DriverContextProvider = ({
@@ -21,6 +25,9 @@ export const DriverContextProvider = ({
 }) => {
   const [query, setQuery] = useState("");
   const [driver, setDriver] = useState<Driver | null>(null);
+  const [isPopupOpened, setIsPopupOpened] = useState(false);
+
+  const togglePopup = () => setIsPopupOpened((prevState) => !prevState);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +45,7 @@ export const DriverContextProvider = ({
     fetchData();
   }, [query]);
 
-  const contextValue = { setQuery, driver, query };
+  const contextValue = { setQuery, driver, query, isPopupOpened, togglePopup };
 
   return (
     <DriverContext.Provider value={contextValue}>

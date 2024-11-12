@@ -4,6 +4,7 @@ import DriverBadges from "./DriverBadges";
 import DriverBiography from "./DriverBiography";
 // import DriverNews from "./DriverNews";
 import { statsBgColors } from "../../../lib/constants";
+import MobileCard from "./MobileCard";
 
 interface Stat {
   icon: string;
@@ -32,11 +33,12 @@ const Stat = ({ icon, stat, color }: Stat) => {
 const DriverInfo = ({ data }: { data: Driver }) => {
   return (
     <div className="w-full flex flex-col gap-4">
+      <MobileCard data={data} />
       <div>
         <span className="mb-1 text-slate-700 font-bold text-base uppercase">
           Current Season
         </span>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
           <Stat icon="W" color="yellow" stat={data.currentSeason.wins} />
           <Stat icon="PP" color="red" stat={data.currentSeason.polePositions} />
           <Stat

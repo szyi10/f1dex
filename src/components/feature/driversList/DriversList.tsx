@@ -10,7 +10,7 @@ const DriversList = () => {
   }
 
   return (
-    <div className="w-full mt-6 grid grid-cols-3 gap-4">
+    <div className="w-full mt-6 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
       {list.map((driver: Driver) => (
         <DriverCard key={driver.name} data={driver} />
       ))}
