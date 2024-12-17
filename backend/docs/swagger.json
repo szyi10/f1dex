@@ -1,0 +1,189 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "REST API of F1Dex application using Fiber and MongoDB",
+        "title": "F1Dex API",
+        "contact": {
+            "name": "Szymon Kędzior"
+        },
+        "license": {
+            "name": "MIT"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/drivers": {
+            "get": {
+                "description": "fetch every driver available.",
+                "consumes": [
+                    "*/*"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "drivers"
+                ],
+                "summary": "Get all drivers.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Driver"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "description": "get the status of server.",
+                "consumes": [
+                    "*/*"
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "tags": [
+                    "health"
+                ],
+                "summary": "Show the status of server.",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Badge": {
+            "type": "object",
+            "properties": {
+                "color": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.CurrentSeason": {
+            "type": "object",
+            "properties": {
+                "fastestLaps": {
+                    "type": "integer"
+                },
+                "podiums": {
+                    "type": "integer"
+                },
+                "pointScored": {
+                    "type": "integer"
+                },
+                "polePositions": {
+                    "type": "integer"
+                },
+                "wins": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.Driver": {
+            "type": "object",
+            "properties": {
+                "age": {
+                    "type": "integer"
+                },
+                "badges": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Badge"
+                    }
+                },
+                "bio": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "currentSeason": {
+                    "$ref": "#/definitions/models.CurrentSeason"
+                },
+                "dateOfBirth": {
+                    "type": "string"
+                },
+                "fastestLaps": {
+                    "type": "integer"
+                },
+                "fullBiography": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "gpEntered": {
+                    "type": "integer"
+                },
+                "height": {
+                    "type": "number"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "number": {
+                    "type": "integer"
+                },
+                "photos": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "placeOfBirth": {
+                    "type": "string"
+                },
+                "podiums": {
+                    "type": "integer"
+                },
+                "pointsScored": {
+                    "type": "number"
+                },
+                "polePositions": {
+                    "type": "integer"
+                },
+                "portrait": {
+                    "type": "string"
+                },
+                "retirements": {
+                    "type": "integer"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "tailwindColor": {
+                    "type": "string"
+                },
+                "team": {
+                    "type": "string"
+                },
+                "weight": {
+                    "type": "number"
+                },
+                "wins": {
+                    "type": "integer"
+                },
+                "worldChampionship": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

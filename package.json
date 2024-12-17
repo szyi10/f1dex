@@ -1,0 +1,14 @@
+{
+  "name": "f1dex",
+  "version": "1.0.0",
+  "scripts": {
+    "setup": "concurrently \"cd frontend && npm install\" \"cd backend && go install github.com/air-verse/air@latest && go install github.com/air-verse/air@latest\"",
+    "dev": "concurrently \"cd frontend && npm run dev\" \"cd backend && make dev\""
+  },
+  "author": "Szymon Kędzior",
+  "license": "MIT",
+  "description": "F1Dex Application",
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

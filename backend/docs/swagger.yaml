@@ -1,0 +1,124 @@
+basePath: /
+definitions:
+  models.Badge:
+    properties:
+      color:
+        type: string
+      label:
+        type: string
+    type: object
+  models.CurrentSeason:
+    properties:
+      fastestLaps:
+        type: integer
+      podiums:
+        type: integer
+      pointScored:
+        type: integer
+      polePositions:
+        type: integer
+      wins:
+        type: integer
+    type: object
+  models.Driver:
+    properties:
+      age:
+        type: integer
+      badges:
+        items:
+          $ref: '#/definitions/models.Badge'
+        type: array
+      bio:
+        type: string
+      country:
+        type: string
+      currentSeason:
+        $ref: '#/definitions/models.CurrentSeason'
+      dateOfBirth:
+        type: string
+      fastestLaps:
+        type: integer
+      fullBiography:
+        items:
+          type: string
+        type: array
+      gpEntered:
+        type: integer
+      height:
+        type: number
+      id:
+        type: string
+      name:
+        type: string
+      number:
+        type: integer
+      photos:
+        items:
+          type: string
+        type: array
+      placeOfBirth:
+        type: string
+      podiums:
+        type: integer
+      pointsScored:
+        type: number
+      polePositions:
+        type: integer
+      portrait:
+        type: string
+      retirements:
+        type: integer
+      slug:
+        type: string
+      tailwindColor:
+        type: string
+      team:
+        type: string
+      weight:
+        type: number
+      wins:
+        type: integer
+      worldChampionship:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact:
+    name: Szymon Kędzior
+  description: REST API of F1Dex application using Fiber and MongoDB
+  license:
+    name: MIT
+  title: F1Dex API
+  version: 1.0.0
+paths:
+  /drivers:
+    get:
+      consumes:
+      - '*/*'
+      description: fetch every driver available.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Driver'
+            type: array
+      summary: Get all drivers.
+      tags:
+      - drivers
+  /health:
+    get:
+      consumes:
+      - '*/*'
+      description: get the status of server.
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+      summary: Show the status of server.
+      tags:
+      - health
+swagger: "2.0"
