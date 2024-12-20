@@ -5,6 +5,7 @@ import (
 	"gitub.com/szyi10/f1dex/database"
 	"gitub.com/szyi10/f1dex/models"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
@@ -32,4 +33,32 @@ func HandleAllDrivers(c *fiber.Ctx) error {
 	}
 
 	return c.Status(200).JSON(drivers)
+}
+
+// @Summary Get driver by ID.
+// @Description fetch a driver by their ID.
+// @Tags drivers
+// @Accept */*
+// @Produce json
+// @Param id path string true "Driver ID"
+// @Success 200 {object} models.Driver
+// @Router /drivers/{id} [get]
+func HandleDriverByID(c *fiber.Ctx) error {
+	id := c.Params("id")
+
+	dbId, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return c.Status(400).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	coll := database.GetCollection("drivers")
+	filter := bson.M{"_id": dbId}
+	var driver models.Driver
+
+	err = coll.FindOne(c.Context(), filter).Decode(&driver)
+	if err != nil {
+		return c.Status(404).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.Status(200).JSON(driver)
 }

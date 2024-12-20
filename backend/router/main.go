@@ -10,4 +10,5 @@ func SetupRoutes(app *fiber.App) {
 
 	drivers := app.Group("/drivers")
 	drivers.Get("/", handlers.HandleAllDrivers)
+	drivers.Get("/:id", handlers.HandleDriverByID)
 }
