@@ -33,11 +33,13 @@ export const DriverContextProvider = ({
       let data;
 
       if (query == "") {
-        // TODO: Get driver with most points in CurrentSeason
-        data = null;
+        const res = await fetch(
+          "http://127.0.0.1:8080/drivers/675edbcfd29d758644aab1fc"
+        );
+        data = await res.json();
       } else {
-        // TODO: Get driver selected by user
-        data = null;
+        const res = await fetch(`http://127.0.0.1:8080/drivers/${query}`);
+        data = await res.json();
       }
 
       setDriver(data);

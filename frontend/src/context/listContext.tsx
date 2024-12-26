@@ -16,7 +16,12 @@ export const ListContextProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // TODO: Fetch all drivers
+      const data = await fetch(
+        "http://127.0.0.1:8080/drivers?sortBy=currentSeason.pointScored&order=desc"
+      );
+      const drivers = await data.json();
+
+      setList(drivers);
     };
 
     fetchData();

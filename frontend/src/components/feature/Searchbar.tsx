@@ -4,8 +4,12 @@ import useList from "@hooks/useList";
 const Searchbar = () => {
   const { setList } = useList();
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // TODO: Search for a driver
+  const handleSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const res = await fetch(
+      `http://127.0.0.1:8080/drivers/search?query=${e.target.value}&sortBy=currentSeason.pointScored&order=desc`
+    );
+    const data = await res.json();
+    setList(data);
   };
 
   return (

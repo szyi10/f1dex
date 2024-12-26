@@ -8,22 +8,12 @@ const Driver = () => {
   const { slug } = useParams();
   const { driver, setQuery } = useDriver();
 
-  // Format slug name to regular one e.g. 'max-verstappen' to 'Max Verstappen'
-  const formatDriverName = (name: string | undefined): string => {
-    if (!name) {
-      return "";
-    }
-
-    return name
-      .split("-")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-  };
-
   useEffect(() => {
     const fetchData = async () => {
-      const driverName = formatDriverName(slug);
-      setQuery(driverName);
+      const res = await fetch(`http://127.0.0.1:8080/drivers/slug/${slug}`);
+      const data = await res.json();
+
+      setQuery(data.id);
     };
 
     fetchData();

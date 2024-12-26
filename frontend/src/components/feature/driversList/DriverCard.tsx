@@ -12,7 +12,7 @@ const DriverCard = ({ data }: { data: Driver }) => {
   return (
     <div
       onClickCapture={togglePopup}
-      id={data.name}
+      id={data.id}
       className="cursor-pointer transition-all hover:scale-[1.02]"
       onClick={changeSelectedDriver}
     >
