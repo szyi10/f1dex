@@ -81,6 +81,30 @@ definitions:
       worldChampionship:
         type: integer
     type: object
+  models.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  models.LoginRequest:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  models.RegisterRequest:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  models.SuccessResponse:
+    properties:
+      message:
+        type: string
+    type: object
 host: localhost:8080
 info:
   contact:
@@ -89,8 +113,89 @@ info:
   license:
     name: MIT
   title: F1Dex API
-  version: 1.0.0
+  version: 1.1.0
 paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Logs in a user and returns a JWT token
+      parameters:
+      - description: Login Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: JWT token
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "400":
+          description: Invalid request body
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "401":
+          description: Invalid credentials
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: Failed to generate token
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Authenticate user
+      tags:
+      - Auth
+  /auth/protected:
+    get:
+      description: A test route accessible only to authenticated users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Hello message with username
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Protected route
+      tags:
+      - Auth
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      description: Registers a new user with a username and password
+      parameters:
+      - description: Register Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: User registered successfully
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+        "400":
+          description: Invalid request body
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Register a new user
+      tags:
+      - Auth
   /drivers:
     get:
       consumes:
@@ -106,6 +211,99 @@ paths:
               $ref: '#/definitions/models.Driver'
             type: array
       summary: Get all drivers.
+      tags:
+      - drivers
+  /drivers/{id}:
+    get:
+      consumes:
+      - '*/*'
+      description: fetch a driver by their ID.
+      parameters:
+      - description: Driver ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Sort by
+        enum:
+        - name
+        - currentSeason.pointScored
+        in: query
+        name: sortBy
+        type: string
+      - description: Order
+        enum:
+        - asc
+        - desc
+        in: query
+        name: order
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Driver'
+      summary: Get driver by ID.
+      tags:
+      - drivers
+  /drivers/search:
+    get:
+      consumes:
+      - '*/*'
+      description: search drivers by name
+      parameters:
+      - description: Search query
+        in: query
+        name: query
+        required: true
+        type: string
+      - description: Sort by
+        enum:
+        - name
+        - currentSeason.pointScored
+        in: query
+        name: sortBy
+        type: string
+      - description: Order
+        enum:
+        - asc
+        - desc
+        in: query
+        name: order
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Driver'
+            type: array
+      summary: Search drivers.
+      tags:
+      - drivers
+  /drivers/slug/{slug}:
+    get:
+      consumes:
+      - '*/*'
+      description: fetch a driver by their slug name.
+      parameters:
+      - description: Driver Slug Name
+        in: path
+        name: slug
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Driver'
+      summary: Get driver by slug name.
       tags:
       - drivers
   /health:
