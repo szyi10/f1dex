@@ -109,6 +109,13 @@ func HandleLogin(c *fiber.Ctx) error {
 		})
 	}
 
+	cookie := new(fiber.Cookie)
+	cookie.Name = "Token"
+	cookie.Value = t
+	cookie.Expires = time.Now().Add(24 * time.Hour)
+
+	c.Cookie(cookie)
+
 	return c.JSON(models.LoginResponse{
 		Token: t,
 	})

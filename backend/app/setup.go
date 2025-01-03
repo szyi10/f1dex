@@ -7,6 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/gofiber/template/html/v2"
 	"gitub.com/szyi10/f1dex/config"
 	"gitub.com/szyi10/f1dex/database"
 	"gitub.com/szyi10/f1dex/router"
@@ -25,7 +26,12 @@ func SetupAndRunApp() error {
 
 	defer database.CloseMongoDB()
 
-	app := fiber.New()
+	engine := html.New("./web/views", ".html")
+	engine.AddFunc("dict", config.Dict)
+
+	app := fiber.New(fiber.Config{
+		Views: engine,
+	})
 
 	app.Use(recover.New())
 	app.Use(logger.New(logger.Config{

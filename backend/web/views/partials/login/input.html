@@ -1,0 +1,11 @@
+{{define "partials/login/input"}}
+<input
+  type="{{.Type}}"
+  placeholder="{{.Placeholder}}"
+  name="{{.Name}}"
+  id="{{.Id}}"
+  autocomplete="off"
+  required
+  class="border border-slate-200 px-4 py-3 rounded text-slate-700 outline-none placeholder:text-slate-400 focus:border-slate-800 transition-colors"
+/>
+{{end}}

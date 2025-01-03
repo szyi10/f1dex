@@ -1,0 +1,26 @@
+<div class="w-full h-screen flex items-center justify-center bg-slate-100">
+  <form
+    hx-post="/api/v1/auth/login"
+    hx-trigger="submit"
+    hx-swap="none"
+    class="bg-white border border-slate-200 rounded-lg shadow-sm p-4 w-96"
+  >
+    <h2
+      class="text-center text-slate-800 uppercase font-semibold text-2xl tracking-wide"
+    >
+      <span class="font-black text-red-500">F1</span>Dex
+    </h2>
+    <div class="w-full flex flex-col gap-2 my-3">
+      {{template "partials/login/input" (dict "Type" "text" "Placeholder"
+      "Username" "Name" "username" "Id" "username")}} {{template
+      "partials/login/input" (dict "Type" "password" "Placeholder" "Password"
+      "Name" "password" "Id" "password")}}
+    </div>
+    <button
+      type="submit"
+      class="bg-red-500 text-slate-100 w-full py-3 rounded-lg font-medium hover:bg-slate-800 transition-colors"
+    >
+      Login
+    </button>
+  </form>
+</div>

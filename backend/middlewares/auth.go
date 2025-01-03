@@ -7,6 +7,7 @@ import (
 
 func NewAuthMiddleware(secret string) fiber.Handler {
 	return jwtware.New(jwtware.Config{
-		SigningKey: []byte(secret),
+		SigningKey:  []byte(secret),
+		TokenLookup: "cookie:Token",
 	})
 }
