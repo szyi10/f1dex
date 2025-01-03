@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "setup": "concurrently \"cd frontend && npm install\" \"cd backend && go install github.com/air-verse/air@latest && go install github.com/air-verse/air@latest\"",
-    "dev": "concurrently \"cd frontend && npm run dev\" \"cd backend && make dev\""
+    "serve": "concurrently \"cd frontend && npm run dev\" \"cd backend && make dev\" \"cd backend/web && npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch\""
   },
   "author": "Szymon Kędzior",
   "license": "MIT",

@@ -15,7 +15,7 @@ Repository of F1Dex Application
 1. Clone the repo
 2. `npm install`
 3. Create .env file in backend folder based on .env.example
-4. `npm run dev`
+4. `npm run serve`
 5. Website is available at http://localhost:5173/
 6. Server is available at http://localhost:8080/
 7. View API docs at http://localhost:8080/swagger
@@ -23,4 +23,4 @@ Repository of F1Dex Application
 ### Scripts
 
 - `npm run setup` - installs all dependencies for frontend and backed
-- `npm run dev` - runs frontend and backend server
+- `npm run serve` - runs frontend and backend server
