@@ -1,6 +1,28 @@
 <div class="bg-slate-100 h-screen">
   {{template "partials/header" .}}
   <main class="max-w-screen-xl mx-auto my-5">
-    <p>Dashboard</p>
+    <div class="w-full flex items-center justify-between">
+      <p class="text-lg text-slate-800">
+        Hello back, <span class="font-medium">Admin</span>!
+      </p>
+      <div
+        hx-get="/api/v1/health"
+        hx-trigger="changed"
+        hx-target="server-status"
+      >
+        Server Status:
+        <span id="server-status" class="font-medium text-green-600"></span>
+      </div>
+    </div>
+    <div class="mt-4 flex-1 flex flex-col gap-1">
+      <div class="grid grid-cols-3 grid-rows-3 gap-4 flex-1">
+        {{template "partials/dashboard/card_driver" .}} {{template
+        "partials/dashboard/card_info" .}} {{template
+        "partials/dashboard/card_status" .}} {{template
+        "partials/dashboard/card_teams" .}} {{template
+        "partials/dashboard/card_tracks" .}} {{template
+        "partials/dashboard/card_users" .}}
+      </div>
+    </div>
   </main>
 </div>
