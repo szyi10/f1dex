@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/gofiber/fiber/v2"
+	"gitub.com/szyi10/f1dex/middlewares"
 )
 
 func Dict(values ...interface{}) map[string]interface{} {
@@ -31,7 +32,8 @@ func AddPagesRoutes(app *fiber.App) {
 	})
 
 	// Dashboard Views (authorization is required)
-	dashboard := app.Group("/admin")
+	jwt := middlewares.NewAuthMiddleware(Secret)
+	dashboard := app.Group("/admin", jwt)
 
 	dashboard.Get("/", func(c *fiber.Ctx) error {
 		return c.Render("dashboard", nil, "layout/main")
