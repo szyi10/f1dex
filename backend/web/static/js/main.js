@@ -24,7 +24,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       elements.serverStatus.innerText = `${status.text} - ${status.code}`;
     }
     if (username) {
-      elements.usernameText.innerText = username;
+      elements.usernameText.innerText = username.username;
     }
     if (drivers) {
       elements.driversCounter.innerText = drivers.length;
