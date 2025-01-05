@@ -132,7 +132,8 @@ func HandleProtectedRoute(c *fiber.Ctx) error {
 	user := c.Locals("user").(*jwt.Token)
 	claims := user.Claims.(jwt.MapClaims)
 	return c.JSON(fiber.Map{
-		"message": "Hello, " + claims["username"].(string),
+		"message":  "Hello " + claims["username"].(string),
+		"username": claims["username"].(string),
 	})
 }
 

@@ -1,26 +1,35 @@
-window.addEventListener("DOMContentLoaded", () => {
-  // Update 'Server Status' homepage element
-  checkStatus().then((res) => {
-    document.getElementById(
-      "server-status"
-    ).innerText = `${res.text} - ${res.code}`;
-  });
-});
+/**
+ * @file Main module for initializing the admin page and updating DOM elements with API data.
+ */
+import * as elements from "./elements.js";
+import * as api from "./api.js";
 
-async function checkStatus() {
+/**
+ * Initializes the admin page and populates DOM elements with API data.
+ * @listens DOMContentLoaded - Executes when the DOM is fully loaded.
+ */
+window.addEventListener("DOMContentLoaded", async () => {
+  // Exit if not on the admin page
+  if (location.pathname !== "/admin") return;
+
   try {
-    const res = await fetch("/api/v1/health");
+    const [status, username, drivers] = await Promise.all([
+      api.checkStatus(),
+      api.getUsername(),
+      api.getDrivers(),
+    ]);
 
-    return {
-      code: res.status,
-      text: res.statusText,
-    };
+    // Update DOM elements with fetched data
+    if (status) {
+      elements.serverStatus.innerText = `${status.text} - ${status.code}`;
+    }
+    if (username) {
+      elements.usernameText.innerText = username;
+    }
+    if (drivers) {
+      elements.driversCounter.innerText = drivers.length;
+    }
   } catch (error) {
-    console.log(error);
-
-    return {
-      code: 0,
-      text: "CLIENT ERROR",
-    };
+    console.error("Initialization failed:", error);
   }
-}
+});
