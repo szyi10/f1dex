@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"gitub.com/szyi10/f1dex/config"
 	"gitub.com/szyi10/f1dex/database"
 	"gitub.com/szyi10/f1dex/models"
 	"go.mongodb.org/mongo-driver/bson"
@@ -42,6 +43,12 @@ func HandleAllDrivers(c *fiber.Ctx) error {
 	if err = cursor.All(c.Context(), &drivers); err != nil {
 		return c.Status(500).JSON(fiber.Map{"internal server error": err.Error()})
 	}
+
+	driverPtrs := make([]*models.Driver, len(drivers))
+	for i := range drivers {
+		driverPtrs[i] = &drivers[i]
+	}
+	config.Drivers = driverPtrs
 
 	return c.Status(200).JSON(drivers)
 }

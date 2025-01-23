@@ -1,0 +1,21 @@
+{{define "partials/table/table_row"}}
+<tr class="hover:bg-slate-50 border-b border-slate-200">
+  <td class="p-4 py-5">
+    <p class="block font-semibold text-sm text-slate-800" data-id="{{.ID}}">
+      {{.ID}}
+    </p>
+  </td>
+  <td class="p-4 py-5">
+    <p class="text-sm text-slate-500">{{.Name}}</p>
+  </td>
+  <td class="p-4 py-5">
+    <p class="text-sm text-slate-500">{{.Team}}</p>
+  </td>
+  <td class="p-4 py-5">
+    <p class="text-sm text-slate-500">Active</p>
+  </td>
+  <td class="p-4 py-5">
+    <p class="text-sm text-blue-500 underline cursor-pointer">Edit</p>
+  </td>
+</tr>
+{{end}}

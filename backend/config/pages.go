@@ -5,7 +5,10 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"gitub.com/szyi10/f1dex/middlewares"
+	"gitub.com/szyi10/f1dex/models"
 )
+
+var Drivers = []*models.Driver{}
 
 func Dict(values ...interface{}) map[string]interface{} {
 	if len(values)%2 != 0 {
@@ -37,5 +40,10 @@ func AddPagesRoutes(app *fiber.App) {
 
 	dashboard.Get("/", func(c *fiber.Ctx) error {
 		return c.Render("dashboard", nil, "layout/main")
+	})
+	dashboard.Get("/drivers", func(c *fiber.Ctx) error {
+		return c.Render("drivers", fiber.Map{
+			"Drivers": Drivers,
+		}, "layout/main")
 	})
 }

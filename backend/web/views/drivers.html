@@ -1,0 +1,20 @@
+<div class="bg-slate-100 min-h-screen">
+  {{template "partials/header" .}}
+  <main class="max-w-screen-xl mx-auto my-5">
+    {{template "partials/table/table_additional_controls"}} {{template
+    "partials/table/table_search"}}
+    <div
+      hx-get="/api/v1/drivers"
+      hx-trigger="load"
+      hx-swap="none"
+      class="relative flex flex-col w-full h-full text-gray-700 bg-white shadow-md rounded-lg bg-clip-border"
+    >
+      <table class="w-full text-left table-auto min-w-max">
+        {{template "partials/table/table_head" .}}
+        <tbody>
+          {{range .Drivers}} {{template "partials/table/table_row" .}} {{end}}
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
