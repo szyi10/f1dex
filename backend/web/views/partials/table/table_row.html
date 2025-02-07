@@ -15,7 +15,12 @@
     <p class="text-sm text-slate-500">Active</p>
   </td>
   <td class="p-4 py-5">
-    <p class="text-sm text-blue-500 underline cursor-pointer">Edit</p>
+    <button
+      data-driver="{{.Name}}"
+      class="text-sm text-blue-500 underline cursor-pointer"
+    >
+      Edit
+    </button>
   </td>
 </tr>
 {{end}}

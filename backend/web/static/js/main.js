@@ -3,6 +3,7 @@
  */
 import * as elements from "./elements.js";
 import * as api from "./api.js";
+import "./editDriverModal.js";
 
 /**
  * Initializes the admin page and populates DOM elements with API data.
@@ -20,13 +21,13 @@ window.addEventListener("DOMContentLoaded", async () => {
     ]);
 
     // Update DOM elements with fetched data
-    if (status) {
+    if (status && location.pathname == "/admin") {
       elements.serverStatus.innerText = `${status.text} - ${status.code}`;
     }
-    if (username) {
+    if (username && location.pathname == "/admin") {
       elements.usernameText.innerText = username.username;
     }
-    if (drivers) {
+    if (drivers && location.pathname == "/admin") {
       elements.driversCounter.innerText = drivers.length;
     }
   } catch (error) {
